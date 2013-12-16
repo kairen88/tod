@@ -1,0 +1,10 @@
+#TOD configuration
+#Sat Jun 01 19:30:43 CST 2013
+[Options]/CFlowActivityPanel/Show\ event\ location=false
+cflowTree.splitterPos=388
+StandaloneUI.height=628
+[Options]/CFlowActivityPanel/Show\ package\ names=true
+[Options]/CFlowActivityPanel/Show\ exception\ events\ in\ red=true
+cflowView.splitterPos=615
+todGUI.customFormatterRegistry=rO0ABXNyACl0b2QuZ3VpLmZvcm1hdHRlci5DdXN0b21Gb3JtYXR0ZXJSZWdpc3RyeS5m/rI7ulso\nAgACTAANaXRzRm9ybWF0dGVyc3QAEExqYXZhL3V0aWwvTGlzdDtMABBpdHNGb3JtYXR0ZXJzTWFw\ndAASTHp6L3V0aWxzL0xpc3RNYXA7eHBzcgATamF2YS51dGlsLkFycmF5TGlzdHiB0h2Zx2GdAwAB\nSQAEc2l6ZXhwAAAAAHcEAAAACnhzcgAQenoudXRpbHMuTGlzdE1hcGAGi1cRrp8VAgAAeHIAEWph\ndmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhyZXNob2xkeHA/QAAA\nAAAAAHcIAAAAAQAAAAB4
+StandaloneUI.width=955

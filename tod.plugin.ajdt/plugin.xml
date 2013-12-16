@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="tod.plugin.ajdt.launch.TODLaunchDelegate_AJDT"
+            id="tod.plugin.ajdt.launchDelegate.AJDT"
+            modes="tod"
+            type="org.eclipse.ajdt.launching.AspectJApplication"/>
+      <launchDelegate
+            delegate="tod.plugin.ajdt.launch.TODLaunchDelegate_AJDT_LoadTime"
+            id="tod.plugin.ajdt.launchDelegate.AJDT_LoadTime"
+            modes="tod"
+            type="org.eclipse.ajdt.launching.AspectJLTWApplication"/>
+            
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="tod.plugin.ajdt.launch.TODLaunchTabGroup_AJDT"
+            id="tod.plugin.ajdt.launchConfigurationTabGroup.AJDT"
+            type="org.eclipse.ajdt.launching.AspectJApplication"/>
+      <launchConfigurationTabGroup
+            class="tod.plugin.ajdt.launch.TODLaunchTabGroup_AJDT_LoadTime"
+            id="tod.plugin.ajdt.launchConfigurationTabGroup.AJDT_LoadTime"
+            type="org.eclipse.ajdt.launching.AspectJLTWApplication"/>
+   </extension>
+   <extension
+         point="tod.plugin.SourceRevealer">
+      <revealer class="tod.plugin.ajdt.AspectJSourceRevealer"/>
+   </extension>
+
+
+</plugin>

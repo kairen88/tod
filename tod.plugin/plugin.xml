@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="SourceRevealer" name="Source Revealer" schema="schema/SourceRevealer.exsd"/>
+   <extension-point id="ActionsForEvent" name="Actions for events" schema="schema/ActionsForEvent.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="TOD"
+            id="tod.plugin">
+      </category>
+      <view
+            category="tod.plugin"
+            class="tod.plugin.views.main.MainView"
+            id="tod.plugin.views.main.MainView"
+            name="TOD Navigator"
+            restorable="true"/>
+      <!--
+      <view
+            category="tod.plugin"
+            class="tod.plugin.fxviews.TraceNavigatorFXView"
+            id="tod.plugin.views.TraceNavigatorFXView"
+            name="Trace Navigator (JavaFX)"/>
+      -->
+      <view
+            category="tod.plugin"
+            class="tod.plugin.views.dbprocess.DBProcessView"
+            id="tod.plugin.views.DBProcessView"
+            name="Database management"
+            restorable="true">
+      </view>
+      <view
+            category="tod.plugin"
+            class="tod.plugin.views.objectwatch.ObjectWatchView"
+            id="tod.plugin.views.objectwatch.ObjectWatchView"
+            name="TOD Watch"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="tod.plugin.actionSet"
+            label="TOD Actions"
+            visible="true">
+         <action
+               class="tod.plugin.actions.TODDebugToolbarAction"
+               disabledIcon="icons/launch.png"
+               hoverIcon="icons/t.png"
+               icon="icons/launch.png"
+               id="tod.plugin.debug"
+               label="Debug with TOD"
+               state="true"
+               style="pulldown"
+               toolbarPath="org.eclipse.debug.ui.launchActionSet/debug"/>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="tod.plugin.actions.ShowEventsForLine"
+            targetID="org.eclipse.jdt.ui.CompilationUnitEditor">
+         <action
+               class="tod.plugin.actions.ShowEventsForLine"
+               id="tod.plugin.actions.ShowEventsForLineAction"
+               label="Show events in TOD"
+               />
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="tod.plugin.actions.CompilationUnitRulerPopupActions"
+            targetID="#CompilationUnitRulerContext">
+         <menu
+               id="tod.plugin.CompilationUnitTODRulerMenu"
+               label="TOD"
+               path="debug">
+            <groupMarker name="tod.plugin.TODRulerMenu.events"/>
+         </menu>
+         <action
+               class="tod.plugin.actions.ShowEventsForLine"
+               id="tod.plugin.actions.CompilationUnitRulerPopupActions.ShowEventsForLineAction"
+               label="Show events in TOD"
+               menubarPath="tod.plugin.CompilationUnitTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowExceptionsForLine"
+               id="tod.plugin.actions.CompilationUnitRulerPopupActions.ShowExceptionsForLineActionDelegate"
+               label="Show exceptions in TOD"
+               menubarPath="tod.plugin.CompilationUnitTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowNextEventForLine"
+               id="tod.plugin.actions.CompilationUnitRulerPopupActions.ShowNextEventForLineAction"
+               label="Next event for line (in current method)"
+               menubarPath="tod.plugin.CompilationUnitTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowNextEventForLineGlobal"
+               id="tod.plugin.actions.CompilationUnitRulerPopupActions.ShowNextEventForLineGlobalAction"
+               label="Next event for line (global)"
+               menubarPath="tod.plugin.CompilationUnitTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowPreviousEventForLine"
+               id="tod.plugin.actions.CompilationUnitRulerPopupActions.ShowPreviousEventForLineAction"
+               label="Previous event for line (in current method)"
+               menubarPath="tod.plugin.CompilationUnitTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowPreviousEventForLineGlobal"
+               id="tod.plugin.actions.CompilationUnitRulerPopupActions.ShowPreviousEventForLineGlobalAction"
+               label="Previous event for line (global)"
+               menubarPath="tod.plugin.CompilationUnitTODRulerMenu/events"/>
+               
+      </viewerContribution>
+
+      <viewerContribution
+            id="tod.plugin.actions.ClassFileRulerPopupActions"
+            targetID="#ClassFileRulerContext">
+         <menu
+               id="tod.plugin.ClassFileTODRulerMenu"
+               label="TOD"
+               path="debug">
+            <groupMarker name="events"/>
+         </menu>
+         <action
+               class="tod.plugin.actions.ShowEventsForLine"
+               id="tod.plugin.actions.ClassFileRulerPopupActions.ShowEventsForLineAction"
+               label="Show events in TOD"
+               menubarPath="tod.plugin.ClassFileTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowNextEventForLine"
+               id="tod.plugin.actions.ClassFileRulerPopupActions.ShowNextEventForLineAction"
+               label="Next event for line"
+               menubarPath="tod.plugin.ClassFileTODRulerMenu/events"/>
+         <action
+               class="tod.plugin.actions.ShowPreviousEventForLine"
+               id="tod.plugin.actions.ClassFileRulerPopupActions.ShowPreviousEventForLineAction"
+               label="Previous event for line"
+               menubarPath="tod.plugin.ClassFileTODRulerMenu/events"/>
+               
+      </viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchModes">
+      <launchMode
+            label="Debug with TOD"
+            mode="tod"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchGroups">
+      <launchGroup
+            bannerImage="icons/launch.png"
+            id="tod.plugin.launchGroup.tod"
+            image="icons/launch.png"
+            label="Debug with TOD"
+            mode="tod"
+            title="TOD launch group title"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="tod.plugin.launch.TODLaunchDelegate_JDT_JavaLocal"
+            id="tod.plugin.launchDelegate.JDT_JavaLocal"
+            modes="tod"
+            type="org.eclipse.jdt.launching.localJavaApplication"/>
+      <launchDelegate
+            delegate="tod.plugin.launch.TODLaunchDelegate_PDE_EclipseApplication"
+            id="tod.plugin.launchDelegate.PDE_EclipseApplication"
+            modes="tod"
+            type="org.eclipse.pde.ui.RuntimeWorkbench"/>
+      <launchDelegate
+            delegate="tod.plugin.launch.TODLaunchDelegate_JDT_JUnit"
+            id="tod.plugin.launchDelegate.JDT_JUnit"
+            modes="tod"
+            type="org.eclipse.jdt.junit.launchconfig"/>
+      <launchDelegate
+            delegate="tod.plugin.launch.TODLaunchDelegate_PDE_JUnit"
+            id="tod.plugin.launchDelegate.PDE_JUnit"
+            modes="tod"
+            type="org.eclipse.pde.ui.JunitLaunchConfig">
+      </launchDelegate>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="tod.plugin.launch.TODLaunchTabGroup_JDT_JavaLocal"
+            id="tod.plugin.launchConfigurationTabGroup.JDT_JavaLocal"
+            type="org.eclipse.jdt.launching.localJavaApplication"/>
+      <launchConfigurationTabGroup
+            class="tod.plugin.launch.TODLaunchTabGroup_PDE_EclipseApplication"
+            id="tod.plugin.launchConfigurationTabGroup.PDE_EclipseApplication"
+            type="org.eclipse.pde.ui.RuntimeWorkbench"/>
+      <launchConfigurationTabGroup
+            class="tod.plugin.launch.TODLaunchTabGroup_JDT_JUnit"
+            id="tod.plugin.launchConfigurationTabGroup.JDT_JUnit"
+            type="org.eclipse.jdt.junit.launchconfig"/>
+      <launchConfigurationTabGroup
+            class="tod.plugin.launch.ConnectToDatabaseLaunchTabGroup"
+            description="Configure database connection"
+            id="tod.plugin.launchConfigurationTabGroup.ConnectToDatabase"
+            type="tod.plugin.launch.connectToExistingDatabase"/>
+      <launchConfigurationTabGroup
+            class="tod.plugin.launch.TODLaunchTabGroup_PDE_JUnit"
+            id="tod.plugin.launchConfigurationTabGroup.PDE_JUnit"
+            type="org.eclipse.pde.ui.JunitLaunchConfig">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationComparators">
+      <launchConfigurationComparator
+            attribute="tod.plugin.launch.OPTIONS_MAP"
+            class="zz.eclipse.utils.launcher.options.OptionsMapComparator"
+            id="tod.plugin.launch.OPTIONS_MAP">
+         
+      </launchConfigurationComparator>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="tod.plugin.launch.ConnectToDatabaseLaunchDelegate"
+            delegateDescription="Connects to an existing database without actually launching a program."
+            delegateName="Connect to Database launcher"
+            id="tod.plugin.launch.connectToExistingDatabase"
+            modes="tod,run"
+            name="Connect to Database">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="tod.plugin.SourceRevealer">
+      <revealer class="tod.plugin.JavaSourceRevealer"/>
+   </extension>
+
+
+</plugin>
